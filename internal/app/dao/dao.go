@@ -9,6 +9,7 @@ import (
 	"bio-assay-ms/internal/app/config"
 	"bio-assay-ms/internal/app/dao/menu"
 	"bio-assay-ms/internal/app/dao/role"
+	"bio-assay-ms/internal/app/dao/task"
 	"bio-assay-ms/internal/app/dao/user"
 	"bio-assay-ms/internal/app/dao/util"
 ) // end
@@ -23,6 +24,7 @@ var RepoSet = wire.NewSet(
 	role.RoleSet,
 	user.UserRoleSet,
 	user.UserSet,
+	task.TaskSet,
 ) // end
 
 // Define repo type alias
@@ -35,6 +37,7 @@ type (
 	RoleRepo               = role.RoleRepo
 	UserRoleRepo           = user.UserRoleRepo
 	UserRepo               = user.UserRepo
+	TaskRepo               = task.TaskRepo
 ) // end
 
 // Auto migration for given models
@@ -51,5 +54,6 @@ func AutoMigrate(db *gorm.DB) error {
 		new(role.Role),
 		new(user.UserRole),
 		new(user.User),
+		new(task.Task),
 	) // end
 }

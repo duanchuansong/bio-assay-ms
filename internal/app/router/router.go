@@ -26,6 +26,7 @@ type Router struct {
 	MenuAPI        *api.MenuAPI
 	RoleAPI        *api.RoleAPI
 	UserAPI        *api.UserAPI
+	TaskAPI        *api.TaskAPI
 } // end
 
 func (a *Router) Register(app *gin.Engine) error {
@@ -108,5 +109,16 @@ func (a *Router) RegisterAPI(app *gin.Engine) {
 			gUser.PATCH(":id/enable", a.UserAPI.Enable)
 			gUser.PATCH(":id/disable", a.UserAPI.Disable)
 		}
+
+		gTask := v1.Group("tasks")
+		{
+			gTask.GET("", a.TaskAPI.Query)
+			gTask.GET(":id", a.TaskAPI.Get)
+			gTask.POST("", a.TaskAPI.Create)
+			gTask.PUT(":id", a.TaskAPI.Update)
+			gTask.DELETE(":id", a.TaskAPI.Delete)
+
+		}
+
 	} // v1 end
 }

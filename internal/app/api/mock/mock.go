@@ -7,4 +7,5 @@ var MockSet = wire.NewSet(
 	MenuSet,
 	RoleSet,
 	UserSet,
+	TaskSet,
 ) // end
